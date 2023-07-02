@@ -1,0 +1,151 @@
+package pl.edu.pwr.raveen.ism.model;
+
+import java.time.LocalDate;
+import java.util.Objects;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Entity
+@Table(name = "Bookings")
+public class Bookings {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "BookingID")
+    private Integer bookingID;
+
+    @Column(name = "UserID")
+    private Integer userID;
+
+    @Column(name = "EventID")
+    private Integer eventID;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name = "CheckInDate")
+    private LocalDate checkInDate;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name = "CheckOutDate")
+    private LocalDate checkOutDate;
+
+    @Column(name = "NumberOfGuests")
+    private Integer numberOfGuests;
+
+    @Column(name = "SpecialRequests")
+    private String specialRequests;
+
+    // Constructors, getters, setters, equals, hashCode, and toString methods
+
+    public Bookings() {
+    }
+
+    public Bookings(Integer bookingID, Integer userID, Integer eventID, LocalDate checkInDate, LocalDate checkOutDate,
+            Integer numberOfGuests, String specialRequests) {
+        this.bookingID = bookingID;
+        this.userID = userID;
+        this.eventID = eventID;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.numberOfGuests = numberOfGuests;
+        this.specialRequests = specialRequests;
+    }
+
+    public Integer getBookingID() {
+        return bookingID;
+    }
+
+    public void setBookingID(Integer bookingID) {
+        this.bookingID = bookingID;
+    }
+
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
+    }
+
+    public Integer getEventID() {
+        return eventID;
+    }
+
+    public void setEventID(Integer eventID) {
+        this.eventID = eventID;
+    }
+
+    public LocalDate getCheckInDate() {
+        return checkInDate;
+    }
+
+    public void setCheckInDate(LocalDate checkInDate) {
+        this.checkInDate = checkInDate;
+    }
+
+    public LocalDate getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public void setCheckOutDate(LocalDate checkOutDate) {
+        this.checkOutDate = checkOutDate;
+    }
+
+    public Integer getNumberOfGuests() {
+        return numberOfGuests;
+    }
+
+    public void setNumberOfGuests(Integer numberOfGuests) {
+        this.numberOfGuests = numberOfGuests;
+    }
+
+    public String getSpecialRequests() {
+        return specialRequests;
+    }
+
+    public void setSpecialRequests(String specialRequests) {
+        this.specialRequests = specialRequests;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Bookings bookings = (Bookings) o;
+        return Objects.equals(bookingID, bookings.bookingID) && Objects.equals(userID, bookings.userID)
+                && Objects.equals(eventID, bookings.eventID) && Objects.equals(checkInDate, bookings.checkInDate)
+                && Objects.equals(checkOutDate, bookings.checkOutDate)
+                && Objects.equals(numberOfGuests, bookings.numberOfGuests)
+                && Objects.equals(specialRequests, bookings.specialRequests);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bookingID, userID, eventID, checkInDate, checkOutDate, numberOfGuests, specialRequests);
+    }
+
+    @Override
+    public String toString() {
+        return "Bookings{" +
+                "bookingID=" + bookingID +
+                ", userID=" + userID +
+                ", eventID=" + eventID +
+                ", checkInDate=" + checkInDate +
+                ", checkOutDate=" + checkOutDate +
+                ", numberOfGuests=" + numberOfGuests +
+                ", specialRequests='" + specialRequests + '\'' +
+                '}';
+    }
+}

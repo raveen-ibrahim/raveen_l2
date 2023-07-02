@@ -1,0 +1,172 @@
+openapi: 3.0.0
+info:
+  title: Event Booking API
+  version: 1.0.0
+
+paths:
+  /users:
+    get:
+      summary: Retrieve a list of users
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Users'
+      responses:
+        '201':
+          description: User created
+
+  /users/{id}:
+    get:
+      summary: Retrieve a specific user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A single user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+    put:
+      summary: Update an existing user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Users'
+      responses:
+        '200':
+          description: User updated
+    delete:
+      summary: Delete a user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User deleted
+
+  /events:
+    get:
+      summary: Retrieve a list of events
+      responses:
+        '200':
+          description: A list of events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Events'
+    post:
+      summary: Create a new event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Events'
+      responses:
+        '201':
+          description: Event created
+
+  /events/{id}:
+    get:
+      summary: Retrieve a specific event
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A single event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Events'
+    put:
+      summary: Update an existing event
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Events'
+      responses:
+        '200':
+          description: Event updated
+    delete:
+      summary: Delete an event
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Event deleted
+
+ 
+components:
+  schemas:
+    Users:
+      type: object
+      properties:
+        UserID:
+          type: integer
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        Email:
+          type: string
+        PhoneNumber:
+          type: string
+    Events:
+      type: object
+      properties:
+        EventID:
+          type: integer
+        EventType:
+          type: string
+        EventNumber:
+          type: integer
+        PricePerNight:
+          type: number
+        EventStatus:
+          type: string
+        FloorNumber:
+          type: integer
+   

@@ -1,0 +1,5 @@
+package pl.edu.pwr.raveen.ism.repo;
+
+public interface userRepo {
+
+}

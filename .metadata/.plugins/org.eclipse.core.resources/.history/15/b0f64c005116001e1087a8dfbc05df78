@@ -1,0 +1,9 @@
+package pl.edu.pwr.raveen.ism.model;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface bookingRepo extends JpaRepository<Bookings, Long> 
+{
+
+
+}

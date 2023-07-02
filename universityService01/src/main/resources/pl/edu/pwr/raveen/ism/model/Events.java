@@ -1,0 +1,203 @@
+package pl.edu.pwr.raveen.ism.model;
+
+import java.net.URI;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import jakarta.annotation.Generated;
+
+/**
+ * Events
+ */
+
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-06-29T10:45:26.096175700+02:00[Europe/Warsaw]")
+public class Events {
+
+  @JsonProperty("EventID")
+  private Integer eventID;
+
+  @JsonProperty("EventType")
+  private String eventType;
+
+  @JsonProperty("EventNumber")
+  private Integer eventNumber;
+
+  @JsonProperty("PricePerNight")
+  private BigDecimal pricePerNight;
+
+  @JsonProperty("EventStatus")
+  private String eventStatus;
+
+  @JsonProperty("FloorNumber")
+  private Integer floorNumber;
+
+  public Events eventID(Integer eventID) {
+    this.eventID = eventID;
+    return this;
+  }
+
+  /**
+   * Get eventID
+   * @return eventID
+  */
+  
+  @Schema(name = "EventID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public Integer getEventID() {
+    return eventID;
+  }
+
+  public void setEventID(Integer eventID) {
+    this.eventID = eventID;
+  }
+
+  public Events eventType(String eventType) {
+    this.eventType = eventType;
+    return this;
+  }
+
+  /**
+   * Get eventType
+   * @return eventType
+  */
+  
+  @Schema(name = "EventType", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public String getEventType() {
+    return eventType;
+  }
+
+  public void setEventType(String eventType) {
+    this.eventType = eventType;
+  }
+
+  public Events eventNumber(Integer eventNumber) {
+    this.eventNumber = eventNumber;
+    return this;
+  }
+
+  /**
+   * Get eventNumber
+   * @return eventNumber
+  */
+  
+  @Schema(name = "EventNumber", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public Integer getEventNumber() {
+    return eventNumber;
+  }
+
+  public void setEventNumber(Integer eventNumber) {
+    this.eventNumber = eventNumber;
+  }
+
+  public Events pricePerNight(BigDecimal pricePerNight) {
+    this.pricePerNight = pricePerNight;
+    return this;
+  }
+
+  /**
+   * Get pricePerNight
+   * @return pricePerNight
+  */
+  @Valid 
+  @Schema(name = "PricePerNight", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public BigDecimal getPricePerNight() {
+    return pricePerNight;
+  }
+
+  public void setPricePerNight(BigDecimal pricePerNight) {
+    this.pricePerNight = pricePerNight;
+  }
+
+  public Events eventStatus(String eventStatus) {
+    this.eventStatus = eventStatus;
+    return this;
+  }
+
+  /**
+   * Get eventStatus
+   * @return eventStatus
+  */
+  
+  @Schema(name = "EventStatus", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public String getEventStatus() {
+    return eventStatus;
+  }
+
+  public void setEventStatus(String eventStatus) {
+    this.eventStatus = eventStatus;
+  }
+
+  public Events floorNumber(Integer floorNumber) {
+    this.floorNumber = floorNumber;
+    return this;
+  }
+
+  /**
+   * Get floorNumber
+   * @return floorNumber
+  */
+  
+  @Schema(name = "FloorNumber", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public Integer getFloorNumber() {
+    return floorNumber;
+  }
+
+  public void setFloorNumber(Integer floorNumber) {
+    this.floorNumber = floorNumber;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Events events = (Events) o;
+    return Objects.equals(this.eventID, events.eventID) &&
+        Objects.equals(this.eventType, events.eventType) &&
+        Objects.equals(this.eventNumber, events.eventNumber) &&
+        Objects.equals(this.pricePerNight, events.pricePerNight) &&
+        Objects.equals(this.eventStatus, events.eventStatus) &&
+        Objects.equals(this.floorNumber, events.floorNumber);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(eventID, eventType, eventNumber, pricePerNight, eventStatus, floorNumber);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class Events {\n");
+    sb.append("    eventID: ").append(toIndentedString(eventID)).append("\n");
+    sb.append("    eventType: ").append(toIndentedString(eventType)).append("\n");
+    sb.append("    eventNumber: ").append(toIndentedString(eventNumber)).append("\n");
+    sb.append("    pricePerNight: ").append(toIndentedString(pricePerNight)).append("\n");
+    sb.append("    eventStatus: ").append(toIndentedString(eventStatus)).append("\n");
+    sb.append("    floorNumber: ").append(toIndentedString(floorNumber)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+}
+

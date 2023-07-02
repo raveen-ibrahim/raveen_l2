@@ -1,0 +1,27 @@
+package pl.edu.pwr.raveen.ism;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+
+@ComponentScan(basePackages ="pl.edu.pwr.raveen.ism.api")
+@SpringBootApplication
+public class mainapp {
+	
+	@Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:4200")  // the Angular app's server
+                .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
+                .allowedHeaders("Authorization", "Cache-Control", "Content-Type")
+                .allowCredentials(true)
+                .maxAge(3600);  // if you want to add a max age
+    }
+
+	public static void main(String[] args) {
+		SpringApplication.run(mainapp.class, args);
+
+	}
+
+}

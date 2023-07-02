@@ -1,0 +1,192 @@
+package pl.edu.pwr.raveen.ism.model;
+
+import java.net.URI;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.time.OffsetDateTime;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import jakarta.annotation.Generated;
+
+/**
+ * Guest
+ */
+
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-06-27T21:10:39.899396900+02:00[Europe/Warsaw]")
+public class Guest {
+
+  @JsonProperty("id")
+  private String id;
+
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("email")
+  private String email;
+
+  /**
+   * RSVP status of the guest
+   */
+  public enum RsvpEnum {
+    TRUE("true"),
+    
+    FALSE("false"),
+    
+    MAYBE("Maybe");
+
+    private String value;
+
+    RsvpEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static RsvpEnum fromValue(String value) {
+      for (RsvpEnum b : RsvpEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  @JsonProperty("rsvp")
+  private RsvpEnum rsvp;
+
+  public Guest id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Unique identifier for the guest
+   * @return id
+  */
+  
+  @Schema(name = "id", description = "Unique identifier for the guest", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public Guest name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Name of the guest
+   * @return name
+  */
+  
+  @Schema(name = "name", description = "Name of the guest", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Guest email(String email) {
+    this.email = email;
+    return this;
+  }
+
+  /**
+   * Email of the guest
+   * @return email
+  */
+  
+  @Schema(name = "email", description = "Email of the guest", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public Guest rsvp(RsvpEnum rsvp) {
+    this.rsvp = rsvp;
+    return this;
+  }
+
+  /**
+   * RSVP status of the guest
+   * @return rsvp
+  */
+  
+  @Schema(name = "rsvp", description = "RSVP status of the guest", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public RsvpEnum getRsvp() {
+    return rsvp;
+  }
+
+  public void setRsvp(RsvpEnum rsvp) {
+    this.rsvp = rsvp;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Guest guest = (Guest) o;
+    return Objects.equals(this.id, guest.id) &&
+        Objects.equals(this.name, guest.name) &&
+        Objects.equals(this.email, guest.email) &&
+        Objects.equals(this.rsvp, guest.rsvp);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name, email, rsvp);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class Guest {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    rsvp: ").append(toIndentedString(rsvp)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+}
+

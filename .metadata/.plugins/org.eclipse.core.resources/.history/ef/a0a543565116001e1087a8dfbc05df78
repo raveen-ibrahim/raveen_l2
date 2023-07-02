@@ -1,0 +1,20 @@
+package pl.edu.pwr.raveen.ism.api;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import pl.edu.pwr.raveen.ism.repo.*;
+
+@RestController
+public class mainController implements DefaultApi{
+	
+	@Autowired
+	userRepo userRepo;
+	
+	@RequestMapping(value="/")
+	public String sayhello() 
+	{
+		return "Hello world";
+	}
+
+}

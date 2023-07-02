@@ -1,0 +1,158 @@
+package pl.edu.pwr.raveen.ism.api;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import pl.edu.pwr.raveen.ism.model.Bookings;
+import pl.edu.pwr.raveen.ism.model.Events;
+import pl.edu.pwr.raveen.ism.model.Users;
+import pl.edu.pwr.raveen.ism.repo.bookingRepo;
+import pl.edu.pwr.raveen.ism.repo.eventRepo;
+import pl.edu.pwr.raveen.ism.repo.usersRepo;
+
+@RestController
+public class mainController {
+
+    @Autowired
+    private bookingRepo bookingRepo;
+
+    @Autowired
+    private eventRepo eventRepo;
+
+    @Autowired
+    private usersRepo usersRepo;
+
+    @GetMapping("/events")
+    public ResponseEntity<List<Events>> eventsGet() {
+        List<Events> events = eventRepo.findAll();
+        return new ResponseEntity<>(events, HttpStatus.OK);
+    }
+
+    @PostMapping("/events")
+    public ResponseEntity<Events> eventsPost(@RequestBody Events events) {
+        Events savedEvent = eventRepo.save(events);
+        return new ResponseEntity<>(savedEvent, HttpStatus.OK);
+    }
+
+    @PutMapping("/events/{id}")
+    public ResponseEntity<Void> eventsIdPut(@PathVariable Integer id, @RequestBody Events events) {
+        Events updatedEvent = eventRepo.findById(id).orElse(null);
+        if (updatedEvent != null) {
+            updatedEvent.setEventType(events.getEventType());
+            updatedEvent.setEventNumber(events.getEventNumber());
+            updatedEvent.setPricePerDay(events.getPricePerDay());
+            updatedEvent.setEventStatus(events.getEventStatus());
+            updatedEvent.setFloorNumber(events.getFloorNumber());
+            eventRepo.save(updatedEvent);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @DeleteMapping(value = "/events/{id}") 
+    public ResponseEntity<Void> eventsIdDelete(@PathVariable Integer id) { 
+    	Events deleteEvent = eventRepo.findById(id).get();
+    	if (deleteEvent != null) {
+    		
+    	eventRepo.delete(deleteEvent); 
+    	return new ResponseEntity<>(HttpStatus.OK);
+    	
+    	}else {
+    		
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @GetMapping("/bookings")
+    public ResponseEntity<List<Bookings>> bookingsGet() {
+        List<Bookings> bookings = bookingRepo.findAll();
+        return new ResponseEntity<>(bookings, HttpStatus.OK);
+    }
+    
+    
+
+    @PostMapping("/bookings")
+    public ResponseEntity<Bookings> bookingsPost(@RequestBody Bookings bookings) {
+        Bookings savedBooking = bookingRepo.save(bookings);
+        return new ResponseEntity<>(savedBooking, HttpStatus.OK);
+    }
+
+    @PutMapping("/bookings/{id}")
+    public ResponseEntity<Void> bookingsIdPut(@PathVariable Integer id, @RequestBody Bookings bookings) {
+        Bookings updatedBooking = bookingRepo.findById(id).orElse(null);
+        if (updatedBooking != null) {
+            updatedBooking.setUserID(bookings.getUserID());
+            updatedBooking.setCheckInDate(bookings.getCheckInDate());
+            updatedBooking.setCheckOutDate(bookings.getCheckOutDate());
+            updatedBooking.setEventID(bookings.getEventID());
+            updatedBooking.setNumberOfGuests(bookings.getNumberOfGuests());
+            updatedBooking.setSpecialRequests(bookings.getSpecialRequests());
+            bookingRepo.save(updatedBooking);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+
+    @DeleteMapping("/bookings/{id}") 
+    public ResponseEntity<Void> bookingsIdDelete(@PathVariable Integer id) { 
+        if (bookingRepo.existsById(id)) {
+            bookingRepo.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    
+   
+    @GetMapping("/users")
+    public ResponseEntity<List<Users>> usersGet() {
+        List<Users> users = usersRepo.findAll();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+    
+//    @PostMapping("/users")
+//    public ResponseEntity<Void> usersIdPut(@RequestBody Integer id, Users users) {
+//        Users savedUsers = usersRepo.save(users);
+//        return new ResponseEntity<>(savedUsers, HttpStatus.OK);
+//    }
+//   
+    @PostMapping("/users")
+    public ResponseEntity<Users> usersPost(@RequestBody Users users) {
+        Users savedUsers = usersRepo.save(users);
+        return new ResponseEntity<>(savedUsers, HttpStatus.OK);
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<Void> usersIdPut(@PathVariable Integer id, @RequestBody Users users) {
+        Users updatedUser = usersRepo.findById(id).orElse(null);
+        if (updatedUser != null) {
+            updatedUser.setFirstName(users.getFirstName());
+            updatedUser.setLastName(users.getLastName());
+            updatedUser.setEmail(users.getEmail());
+            updatedUser.setPhoneNumber(users.getPhoneNumber());
+            // Set other properties as needed
+            usersRepo.save(updatedUser);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<Void> usersIdDelete(@PathVariable Integer id) {
+        if (usersRepo.existsById(id)) {
+            usersRepo.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+}

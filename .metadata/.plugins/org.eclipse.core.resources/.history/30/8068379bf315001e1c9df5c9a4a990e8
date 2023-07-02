@@ -1,0 +1,157 @@
+package pl.edu.pwr.raveen.ism.model;
+
+import java.net.URI;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import java.time.OffsetDateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+import java.time.OffsetDateTime;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import jakarta.annotation.Generated;
+
+/**
+ * Event
+ */
+
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-06-27T21:10:39.899396900+02:00[Europe/Warsaw]")
+public class Event {
+
+  @JsonProperty("id")
+  private String id;
+
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("date")
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  private OffsetDateTime date;
+
+  @JsonProperty("location")
+  private String location;
+
+  public Event id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Unique identifier for the event
+   * @return id
+  */
+
+  @Schema(name = "id", description = "Unique identifier for the event", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public Event name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Name of the event
+   * @return name
+  */
+
+  @Schema(name = "name", description = "Name of the event", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Event date(OffsetDateTime date) {
+    this.date = date;
+    return this;
+  }
+
+  /**
+   * Date and time of the event
+   * @return date
+  */
+  @Valid
+  @Schema(name = "date", description = "Date and time of the event", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public OffsetDateTime getDate() {
+    return date;
+  }
+
+  public void setDate(OffsetDateTime date) {
+    this.date = date;
+  }
+
+  public Event location(String location) {
+    this.location = location;
+    return this;
+  }
+
+  /**
+   * Location of the event
+   * @return location
+  */
+
+  @Schema(name = "location", description = "Location of the event", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  public String getLocation() {
+    return location;
+  }
+
+  public void setLocation(String location) {
+    this.location = location;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Event event = (Event) o;
+    return Objects.equals(this.id, event.id) &&
+        Objects.equals(this.name, event.name) &&
+        Objects.equals(this.date, event.date) &&
+        Objects.equals(this.location, event.location);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name, date, location);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class Event {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    date: ").append(toIndentedString(date)).append("\n");
+    sb.append("    location: ").append(toIndentedString(location)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+}
+

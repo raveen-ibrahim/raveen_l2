@@ -1,0 +1,30 @@
+package pl.edu.pwr.raveen.ism.api;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import pl.edu.pwr.raveen.ism.repo.bookingRepo;
+import pl.edu.pwr.raveen.ism.repo.eventRepo;
+import pl.edu.pwr.raveen.ism.repo.usersRepo;
+
+@RestController
+public class mainController implements DefaultApi {
+    
+	@Autowired
+	bookingRepo br;
+    
+	@Autowired
+	eventRepo er;
+	
+	@Autowired
+	usersRepo ur;
+	
+	@RequestMapping(value="/")
+	public String sayhello() 
+	{
+		return "Hello world";
+	}
+	
+	
+}

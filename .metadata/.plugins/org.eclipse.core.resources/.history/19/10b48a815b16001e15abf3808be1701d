@@ -1,0 +1,17 @@
+package pl.edu.pwr.raveen.ism.api;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class mainController {
+
+	@GetMapping(value="/")
+	public String sayhello() 
+	{
+		return "Hello world";
+	}
+	
+	
+}

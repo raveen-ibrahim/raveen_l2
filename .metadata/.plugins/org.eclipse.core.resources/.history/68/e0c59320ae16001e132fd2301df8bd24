@@ -1,0 +1,84 @@
+package pl.edu.pwr.raveen.ism.api;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import pl.edu.pwr.raveen.ism.model.Bookings;
+import pl.edu.pwr.raveen.ism.model.Events;
+import pl.edu.pwr.raveen.ism.repo.bookingRepo;
+import pl.edu.pwr.raveen.ism.repo.eventRepo;
+import pl.edu.pwr.raveen.ism.repo.usersRepo;
+
+@RestController
+@RequestMapping("/api")
+public class mainController {
+
+    @Autowired
+    private bookingRepo bookingRepo;
+
+    @Autowired
+    private eventRepo eventRepo;
+
+    @Autowired
+    private usersRepo usersRepo;
+
+    @GetMapping("/events")
+    public ResponseEntity<List<Events>> eventsGet() {
+        List<Events> events = eventRepo.findAll();
+        return new ResponseEntity<>(events, HttpStatus.OK);
+    }
+
+    @PostMapping("/events")
+    public ResponseEntity<Events> eventsPost(@RequestBody Events events) {
+        Events savedEvent = eventRepo.save(events);
+        return new ResponseEntity<>(savedEvent, HttpStatus.OK);
+    }
+
+    @PutMapping("/events/{id}")
+    public ResponseEntity<Void> eventsIdPut(@PathVariable Integer id, @RequestBody Events events) {
+        Events updatedEvent = eventRepo.findById(id).orElse(null);
+        if (updatedEvent != null) {
+            updatedEvent.setEventType(events.getEventType());
+            updatedEvent.setEventNumber(events.getEventNumber());
+            updatedEvent.setPricePerDay(events.getPricePerDay());
+            updatedEvent.setEventStatus(events.getEventStatus());
+            updatedEvent.setFloorNumber(events.getFloorNumber());
+            eventRepo.save(updatedEvent);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @DeleteMapping(value = "/events/{id}") 
+    public ResponseEntity<Void> eventsIdDelete(@PathVariable Integer id) { 
+    	Events deleteEvent = eventRepo.findById(id).get();
+    	if (deleteEvent != null) {
+    		
+    	eventRepo.delete(deleteEvent); 
+    	return new ResponseEntity<>(HttpStatus.OK);
+    	
+    	}else {
+    		
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @GetMapping("/bookings")
+    public ResponseEntity<List<Bookings>> bookingsGet() {
+        List<Bookings> bookings = bookingRepo.findAll();
+        return new ResponseEntity<>(bookings, HttpStatus.OK);
+    }
+    
+    
+    
+    public ResponseEntity<Bookings> bookingsPost(@RequestBody Bookings bookings) {
+        Bookings savedBooking = bookingRepo.save(bookings);
+        return new ResponseEntity<>(savedBooking, HttpStatus.OK);
+    }
+
+}

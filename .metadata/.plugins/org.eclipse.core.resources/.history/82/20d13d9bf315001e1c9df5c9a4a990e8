@@ -1,0 +1,17 @@
+package pl.edu.pwr.raveen.ism.app;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+
+@ComponentScan(basePackages ="pl.edu.pwr.raveen.ism.api")
+@SpringBootApplication
+public class raveenmainapp {
+
+	public static void main(String[] args) {
+		SpringApplication.run(raveenmainapp.class, args);
+
+	}
+
+}
